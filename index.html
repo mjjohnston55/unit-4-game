@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en-us"></html>
+
+<head>
+<meta charset="UTF-8">
+<title> Crystal Game</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+<script src="https://code.jquery.com/jquery.js"></script>
+</head>
+
+<body>
+    <div id="title-container" class="container">
+        <div class="row">
+                <div class="col-lg-5 offset-3" id="game-title">
+                        Crystal Collector Game
+                </div>
+
+            </div>
+        <div class="row">
+            <div class="col-lg-3 offset-1" id="goal-div">
+                         <!-- Goal score for current game displayed here -->   
+            </div>
+            <div class="col-lg-3 offset-1" id="rules-div">
+                    <p>There are four crystals below. Clicking on each crystal will add a specific amount of points to your score.</p>
+
+                    <p>If you get your score to match the randomly generated goal number, you win! If your score goes above the goal, you lose!</p>
+            <!-- Goal score for current game displayed here -->
+         </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2" class="crystal-button">
+                    <button class="btn" id="blue-gem-button">
+                <img src="assets/images/blue-gem.png" alt="blue-gem" class="gem-image">
+            </button>
+        </div>
+        <div class="col-sm-2" class="crystal-button">
+                <button class="btn" id="pink-gem-button">
+            <img src="assets/images/pink-gem.png" alt="pink-gem" class="gem-image">
+        </button>
+    </div>
+    <div class="col-sm-2" class="crystal-button">
+            <button class="btn" id="green-gem-button">
+        <img src="assets/images/green-gem.png" alt="green-gem" class="gem-image">
+    </button>
+</div>
+<div class="col-sm-2" class="crystal-button">
+        <button class="btn" id="purple-gem-button">
+    <img src="assets/images/purple-gem.png" alt="purple-gem" class="gem-image">
+</button>
+</div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 offset-4" id="player-score-div">
+            <!-- Player score for current game displayed here -->
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2 offset-1" id="wins-div">
+                <!-- Player score for current game displayed here -->
+        </div>
+        <div class="col-sm-2 offset-4" id="losses-div">
+                <!-- Player score for current game displayed here -->
+    </div>
+    </div>
+</body>
+
+<script>
+
+    var blue_value, pink_value, green_value, purple_value, goal, score, wins, losses;
+
+    wins = 0;
+    losses = 0;
+
+        // Function to start each round, set new crystal values
+    function initiateRound() {
+    score = 0;
+    goal = Math.floor(Math.random() * 50) + 35;
+    $("#goal-div").html("Goal: " + goal);
+    // randomly generating crystal values each game + insuring they are all unique values
+    blue_value = Math.floor(Math.random() * 7) + 3;
+    for (pink_value = Math.floor(Math.random() * 6) + 2; (pink_value == blue_value) || (pink_value == 0);) {
+    pink_value = Math.floor(Math.random() * 6) + 2
+    }
+    for (green_value = Math.floor(Math.random() * 8) + 4;(green_value == blue_value) || (green_value == pink_value) || (green_value == 0);) {
+    green_value = Math.floor(Math.random() * 8) + 4
+    }
+    for (purple_value = Math.floor(Math.random() * 9) + 5; (purple_value == blue_value) || (purple_value == pink_value)
+     || (purple_value == green_value) || (purple_value == 0);) {
+    purple_value = Math.floor(Math.random() * 9) + 5; 
+     }
+    
+    
+     //  generating score display
+    $("#wins-div").html("Wins " + wins);
+    $("#losses-div").html("Losses " + losses);
+    $("#player-score-div").html("Score: " + score);
+    }
+
+$(document).ready();
+score = -1;
+if ((score > goal) || (score == -1)) {
+    initiateRound();
+}
+
+// Crystal Buttons Functionality
+$("#blue-gem-button").on("click", function() {
+score = score + blue_value;
+if (score == goal) {
+    wins ++;
+    initiateRound();
+}
+if (score > goal) {
+    losses++;
+    initiateRound();
+}
+$("#player-score-div").html("Score: " + score);
+    });
+$("#pink-gem-button").on("click", function() {
+score = score + pink_value;
+if (score == goal) {
+    wins ++;
+    initiateRound();
+}
+if (score > goal) {
+    losses++;
+    initiateRound();
+}
+$("#player-score-div").html("Score: " + score);
+});
+$("#green-gem-button").on("click", function() {
+score = score + green_value;
+if (score == goal) {
+    wins ++;
+    initiateRound();
+}
+if (score > goal) {
+    losses++;
+    initiateRound();
+}
+$("#player-score-div").html("Score: " + score);
+});
+$("#purple-gem-button").on("click", function() {
+score = score + purple_value;
+if (score == goal) {
+    wins ++;
+    initiateRound();
+}
+if (score > goal) {
+    losses++;
+    initiateRound();
+}
+$("#player-score-div").html("Score: " + score);
+});
+
+
+
+
+</script>
+
+</html>

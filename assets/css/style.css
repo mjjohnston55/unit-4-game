@@ -1,0 +1,42 @@
+body { 
+    background-image: url(../images/crystalmine.jpg) !important;
+    background-color: blue !important;
+    padding-top: 100px;
+    background-size:cover;
+    color: darkorange;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.gem-image {
+    height: 200px;
+}
+
+#game-title {
+height: 50px;
+font-size: 40px;
+
+}
+
+#goal-div {
+    font-size: 50px;
+    padding-top: 50px
+}
+
+#player-score-div {
+    font-size: 40px;
+}
+
+#rules-div {
+    padding-top: 50px
+
+
+}
+
+#wins-div {
+    text-align: center;
+}
+
+#losses-div {
+    text-align: center;
+}
